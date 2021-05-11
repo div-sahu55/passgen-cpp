@@ -3,7 +3,7 @@
 #include "version.h"
 #include "engine.h"
 void print_usage() {
-    std::cout << "Usage:\n";
+    // std::cout << "Usage:\n";
     std::cout << "passgen -L <length>       generates a random password with default character set of given length\n";
 	std::cout << "Example: passgen -L 20    generates a random password with default character set of length 20\n";
 	std::cout << "passgen -S                generates a random password with all character set of default length 8\n";
@@ -13,9 +13,7 @@ void print_usage() {
 }
 
 int main(int argc, char *argv[]){
-    
-    // r1.setLength(20);
-    // std::cout<<r1.getLength();
+
     // set a limit of the number of arguments to be passed: in argc
     if(argc > 4){
         // tell the user how to run the program
@@ -28,8 +26,6 @@ int main(int argc, char *argv[]){
     
     // set symbol set
     bool symbol_set = false;
-    RandomEngine r1(length,symbol_set);
-    std::cout<<r1.getLength();
     for(int i = 1; i<argc; i++) {
         if(strcmp(argv[i], "-S") == 0) {
             if(!symbol_set) {
