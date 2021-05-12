@@ -1,7 +1,5 @@
 #include <iostream>
 #include <cstring>
-#include <fstream>
-#include <random>
 #include "version.h"
 #include "engine.h"
 void print_usage() {
@@ -24,10 +22,9 @@ int main(int argc, char *argv[]){
         return 1;
     }
     // set the length of the character set to default, which is 8.
-    int length=8;
+    uint8_t length=8;
     // set symbol set
-    bool symbol_set = false,gen_pass=false;
-    RandomEngine r1((uint8_t)8,symbol_set);
+    bool symbol_set = false;
     for(int i = 1; i<argc; i++) {
         if(strcmp(argv[i], "-S") == 0) {
             if(!symbol_set) {
@@ -61,7 +58,6 @@ int main(int argc, char *argv[]){
                 return 2;
             }
             // If all goes right, we have a valid length
-            gen_pass=true;
             break;
         } else if (strcmp(argv[i], "-V") == 0){
             std::cout << "passgen version: " << passgen_VERSION_MAJOR << "." << passgen_VERSION_MINOR  << "."<< passgen_VERSION_REVISION << "\n";
@@ -75,41 +71,9 @@ int main(int argc, char *argv[]){
             return 2;
         }
     }
-    if(gen_pass || length==8){
-    //Random no. generaor:
-    char seq[100];
-    std::ifstream file("/dev/urandom", std::ios::in | std::ios::binary);
-    if(!file) {
-        std::cout << "Error opening file\n";
-    }
-    file.read(seq, sizeof(char)*100);
-    file.close();
-    
-    std::seed_seq seed(seq, seq+100);
-    std::mt19937_64 gen(seed);
-    std::uniform_int_distribution<int64_t> dist(0, 100000);
-    //password generation:
-        r1.setLength(length);
-        r1.setSymbolSet(symbol_set);
-        std::string alpha_num="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        std::string symbols="!@#$%^&*-_";
-        std::string s;
-        std::string alpha_num_sym;
-        int mod=62;
-        if(r1.getSymbolSetStatus()==true){
-            alpha_num_sym= alpha_num + symbols;
-            mod=72;
-        }
-        else
-        alpha_num_sym= alpha_num;
-            for(int i=0;i<r1.getLength();i++){
-                int ind=dist(gen) % mod;
-                char c;
-                c= alpha_num_sym[ind];
-                s+=c;
-            }
-            r1.password=s;
-            std::cout<<r1.getString()<<std::endl;
-    }
+    //Declaring an object of RandomEngine class with values of length and symbol set.
+    RandomEngine r1(length,symbol_set);
+    //Printing out the randomly generated password.
+    std::cout<<r1.getString()<<std::endl;
     return 0;
 }

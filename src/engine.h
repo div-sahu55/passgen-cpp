@@ -8,12 +8,11 @@ class RandomEngine {
         bool symbl = false;
 
     public:
-        std::string password = "";
     // Constructors:
         RandomEngine(); //default constructor
-        explicit RandomEngine(uint8_t l); // To set the generator for the specific length
-        explicit RandomEngine(bool s); // To turn on symbol character set. Length remains default.
-        RandomEngine(uint8_t l, bool s); // To set length and symbol character set.
+        explicit RandomEngine(uint8_t l); 
+        explicit RandomEngine(bool s); 
+        RandomEngine(uint8_t l, bool s);
 
     // Methods:
         void setLength(uint8_t); // Set the length

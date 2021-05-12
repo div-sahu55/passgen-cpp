@@ -6,25 +6,21 @@
 
 #IncludeRegexTransform: 
 
+/home/divyansh/Projects/neww/pas-origin/passgen-cpp/src/engine.cpp
+engine.h
 /home/divyansh/Projects/neww/pas-origin/passgen-cpp/src/engine.h
 iostream
 -
-cstring
--
-
-/home/divyansh/Projects/neww/pas-origin/passgen-cpp/src/main.cpp
-iostream
--
-cstring
+string
 -
 fstream
 -
 random
 -
-version.h
-/home/divyansh/Projects/neww/pas-origin/passgen-cpp/src/version.h
-engine.h
-/home/divyansh/Projects/neww/pas-origin/passgen-cpp/src/engine.h
 
-src/version.h
+/home/divyansh/Projects/neww/pas-origin/passgen-cpp/src/engine.h
+iostream
+-
+cstring
+-
 
